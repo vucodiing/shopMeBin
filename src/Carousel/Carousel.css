@@ -1,0 +1,10 @@
+.carousel-style {
+  padding: 5px;
+}
+.carousel-style .item-info .item-info2 .item-sell {
+  display: flex;
+  align-items: center;
+}
+.carousel-style .item-info .item-info2 .item-sell span {
+  margin: 5px;
+}

@@ -1,0 +1,141 @@
+#mask-page {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    opacity: 0.5;
+    z-index: 3;
+    background-color: black;
+  }
+.box-logo {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+.box-logo img {
+  width: 100%;
+  padding: 15px;
+  position: absolute;
+}
+#account-close {
+  height: 30px;
+  top: -15px;
+  cursor: pointer;
+  position: absolute;
+  right: -3px;
+}
+.box-btn {
+  width: 250px;
+  position: relative;
+  box-shadow: 0 0 20px 9px #1d0ee927;
+  margin: 20px auto;
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-around;
+}
+.toggle-btn {
+  padding: 10px;
+  background: transparent;
+  border: 0;
+  outline: none;
+  position: relative;
+}
+#btn-run {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 125px;
+  height: 100%;
+  border-radius: 30px;
+  background: linear-gradient(to right, #0a86ec, #f2baa9);
+  transition: 0.3s;
+  border: 0;
+  outline: none;
+}
+button:focus {
+  outline: none;
+}
+#header-account {
+  position: relative;
+  
+  z-index: 4;
+  background-color: white;
+  width: 304px;
+  margin: auto;
+  border-radius: 7px;
+  padding: 10px;
+}
+#login, #register {
+  position: relative;
+}
+.login-facebook, .login-law {
+  text-align: center;
+}
+.login-law {
+  margin-top: 10px;
+  font-size: 12px;
+  color: rgb(71, 71, 71);
+}
+.login-facebook span {
+  font-size: 12px;
+  color: rgb(71, 71, 71);
+  padding: 2px;
+  background-color: white;
+}
+.login-facebook hr {
+  margin-top: -11px;
+}
+.login-facebook button, .login-submit button {
+  width: 100%;
+  border-radius: 7px;
+}
+.login-submit button {
+  background-color: #18A0FB;
+  border-color: #18A0FB;
+}
+.login-use, .login-use-checkbox {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+.login-use-checkbox {
+  display: flex;
+  align-items: center;
+}
+.login-use-checkbox label {
+  margin-bottom: 0px;
+}
+
+.login-use input {
+  width: 100%;
+  height: 35px;
+  padding: 8px;
+  border-radius: 7px;
+  border: 1px solid;
+}
+.login-use label {
+  margin-bottom: 0px;
+}
+.remember {
+  cursor: pointer;
+}
+#checkbox {
+  width: 14px;
+  height: 14px;
+  margin-right: 5px;
+}
+.repo {
+  position: relative;
+}
+.repo img {
+  position: absolute;
+  top: 32px;
+  right: 9px;
+  width: 14px;
+  cursor: pointer;
+}
+#name-span, #password-span, #name-register-span, #email-span, #password-register-span, #pass-again-span {
+  font-size: 13px;
+  font-style: italic;
+  color: rgb(255, 68, 68);
+}

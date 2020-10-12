@@ -1,0 +1,62 @@
+#filter-mobile {
+  width: 175px;
+  position: fixed;
+  top: 0px;
+  background-color: white;
+  z-index: 2;
+  padding: 15px;
+  background-color: #9dc4e4;
+ 
+  transition: all 0.5s;
+  box-shadow: 0px 0px 10px 0px;
+}
+#filter-mobile label {
+  cursor: pointer;
+}
+.filter-close img,
+.filter-cancel img {
+  height: 20px;
+  position: absolute;
+  top: 10px;
+  cursor: pointer;
+}
+.filter-close img {
+  right: 10px;
+}
+.filter-cancel img {
+  right: 37px;
+}
+.category {
+  font-size: 14px;
+}
+
+.check-category,
+.input-cart {
+  margin-top: 5px;
+}
+.category span {
+  font-weight: bold;
+}
+.check-category input {
+  margin-right: 5px;
+  cursor: pointer;
+}
+.check-category span {
+  font-weight: normal;
+}
+.input-cart-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 140px;
+  margin-bottom: 5px;
+}
+.input-cart-line span {
+  font-weight: normal;
+}
+.input-cart-line input {
+  width: 100px;
+  border-radius: 7px;
+  border: 1px solid rgb(80, 80, 80);
+  padding-left: 7px;
+}
