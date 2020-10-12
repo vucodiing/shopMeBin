@@ -1,16 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import React from "react";
 import Footer from "../../Footer/Footer";
 import "./Cart.css";
-function Cart({ cart, confirmRemove }) {
-  // const [cart, setCart] = useState([]);
-  // useEffect(() => {
-  //   async function getCart() {
-  //     const response = await fetch("https://data-shopmebin.herokuapp.com/cart");
-  //     const cart = await response.json();
-  //     setCart(cart);
-  //   }
-  //   getCart();
-  // }, []);
+import { Link } from "react-router-dom";
+function Cart({ cart, confirmRemove, handleChangeQuantity, subTotal, upItem, downItem }) {
+
   const list = cart.map((item) => (
     <div
       className="item-cart"
@@ -42,14 +36,15 @@ function Cart({ cart, confirmRemove }) {
                 </div>
               </div>
               <div className="item-number">
-                <button id="down-number1">-</button>
+                <button onClick={(event)=>downItem(item.id, event)} id="down-number1">-</button>
                 <input
                   className="number-zone"
                   id="number-zone-sp1"
                   type="text"
-                  defaultValue={1}
+                  value={item.quantity}
+                  onChange={(event) => handleChangeQuantity(item.id,event)}
                 />
-                <button id="up-number1">+</button>
+                <button onClick={()=>upItem(item.id)} id="up-number1">+</button>
               </div>
             </div>
           </div>
@@ -77,9 +72,9 @@ function Cart({ cart, confirmRemove }) {
     </div>
   ));
 
+
   return (
     <div>
-      {/* <FilterMobile /> */}
       <div className="container" id="cart-content">
         <div className="text-link">
           <a href="index.html">Trang chủ ›&nbsp;</a>
@@ -100,50 +95,65 @@ function Cart({ cart, confirmRemove }) {
           </div>
         </div>
       </div>
-      <div className="container" style={{ minHeight: "1000px" }}>
-        <div className="row">
-          <div className="col-12 col-md-7 col-lg-7 col-xl-7">
-            <div className="list-item">{list}</div>
+      {cart.length === 0 ? (
+        <div className="non-cart">
+          <div><img style={{ maxWidth:"100%", padding:"10px" }} src="https://i.imgur.com/L1BcT82.jpg" alt="shopping now"/></div>
+          <div style={{ marginTop:"20px" }}><Link to="/"><Button variant="warning">QUAY LẠI MUA SẮM</Button>{' '}</Link></div>
           </div>
-          <div className="col-12 col-md-5 col-lg-5 col-xl-5">
-            <div className="provisional">
-              <div className="text-provisional">
-                <span>Tạm tính</span>
-              </div>
-              <div className="price-provisional">
-                <input
-                  id="provisional"
-                  type="text"
-                  // value={subTotal}
-                  disabled="disabled"
-                />
-                <span>vnđ</span>
-              </div>
+      ) : (
+
+        <div className="container" style={{ minHeight: "1000px" }}>
+          <div className="row">
+            <div className="col-12 col-md-7 col-lg-7 col-xl-7">
+              <div className="list-item">{list}</div>
             </div>
-            <div className="coupon">
-              <input type="text" placeholder="Mã giảm giá" />
-              <button>Áp dụng</button>
-            </div>
-            <div className="into-money">
-              <div className="into-money-text">
-                <span>Thành tiền</span>
+            <div className="col-12 col-md-5 col-lg-5 col-xl-5">
+              <div className="provisional">
+                <div className="text-provisional">
+                  <span>Tạm tính</span>
+                </div>
+                <div className="price-provisional">
+                  <input
+                    id="provisional"
+                    type="text"
+                    // value={subTotal}
+                    disabled="disabled"
+                  />
+                  <span>{subTotal.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "VND",
+                  }).replace("₫","")} VNĐ</span>
+                </div>
               </div>
-              <div className="into-money-price">
-                <input
-                  id="into-money"
-                  type="text"
-                  // value={subTotal}
-                  disabled="disabled"
-                />
-                <span>vnđ </span>
+              <div className="coupon">
+                <input type="text" placeholder="Mã giảm giá" />
+                <button>Áp dụng</button>
               </div>
-            </div>
-            <div className="pay-toWin">
-              <button>TIẾN HÀNH ĐẶT HÀNG</button>
+              <div className="into-money">
+                <div className="into-money-text">
+                  <span>Thành tiền</span>
+                </div>
+                <div className="into-money-price">
+                  <input
+                    id="into-money"
+                    type="text"
+                    // value={subTotal}
+                    disabled="disabled"
+                  />
+                  <span>{subTotal.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "VND",
+                  }).replace("₫","")} VNĐ</span>
+                </div>
+              </div>
+              <div className="pay-toWin">
+                <button>TIẾN HÀNH ĐẶT HÀNG</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
+
       <Footer />
     </div>
   );

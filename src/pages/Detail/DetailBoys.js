@@ -5,7 +5,7 @@ import Footer from "../../Footer/Footer";
 import InnerImageZoom from "react-inner-image-zoom";
 import "./Detail.css";
 import ResponsiveBoy from "../../Carousel/CarouselIBoy";
-function DetailBoys({addCart}) {
+function DetailBoys({ addCart }) {
   document.title = "CHI TIẾT SẢN PHẨM";
   const [item, setItem] = useState([]);
   const { slug } = useParams();
@@ -22,34 +22,8 @@ function DetailBoys({addCart}) {
     getItem();
   }, [slug]);
 
-  // function addCart() {
-  //   fetch("https://data-shopmebin.herokuapp.com/cart", {
-  //     method: "POST",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       name: item.name,
-  //       image: item.image,
-  //       imageZoom: item.imageZoom,
-  //       content: item.content,
-  //       priceNew: item.priceNew,
-  //       priceOld: item.priceOld,
-  //       freeShip: item.freeShip,
-  //       slug: item.slug,
-  //       percent: item.percent,
-  //       topSale: item.topSale,
-  //       tuyp: item.tuyp,
-  //       age: item.age,
-  //     }),
-  //   });
-  // }
-
   return (
     <div>
-      {/* <FilterMobile showFilterMobile={showFilterMobile}
-        closeFilterMobile={CloseFilterMobile}/> */}
       {load ? (
         <div className="loader"></div>
       ) : (

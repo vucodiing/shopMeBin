@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import Blog from "./pages/Blog/Blog";
@@ -48,37 +48,63 @@ function App() {
         topSale: item.topSale,
         tuyp: item.tuyp,
         age: item.age,
+        quantity: item.quantity,
       }),
     });
     async function getCount() {
       const response = await fetch("https://data-shopmebin.herokuapp.com/cart");
       const cart = await response.json();
       setCart(cart);
-      setCount(cart.length);
+      setCount(cart);
     }
     getCount();
-    console.log(count);
   }
 
   async function removeCart() {
     const url = "https://data-shopmebin.herokuapp.com/cart/" + id;
     fetch(url, { method: "DELETE" });
-    // const removeCart = await response.json();
-
-    // setCart(removeCart);
-    // async function getCount() {
-    //   const response = await fetch("https://data-shopmebin.herokuapp.com/cart");
-    //   const cart = await response.json();
-    //   setCart(cart);
-    // }
-    // getCount();
     const newProducts = cart.filter(
       (product) => product.id !== deleteProduct.id
     );
     setCart(newProducts);
-    setShowModal(false); // hide modal
+    setCount(newProducts);
+    setShowModal(false);
   }
 
+  let subTotal = 0;
+  for (let product of cart) {
+    subTotal += Number(product.priceNew) * product.quantity*1000;
+  }
+  function handleChangeQuantity(id, event) {
+    const newProduct = [...cart];
+    if (parseInt(event.target.value) >= 1){
+    for (let product of newProduct) {
+      if (product.id === id) {
+        product.quantity = parseInt(event.target.value);
+      }
+    }
+    setCart(newProduct);
+    setCount(newProduct);
+  }} 
+  function upItem(id){
+    const newProduct = [...cart];
+    for (let product of newProduct){
+      if (product.id === id){product.quantity+=1}
+      
+    }
+    setCart(newProduct);
+    setCount(newProduct);
+  }
+  function downItem(id,event){
+    const newProduct = [...cart];
+    
+    for (let product of newProduct){
+      if (product.id === id && product.quantity >1){product.quantity-=1}
+    }
+    setCart(newProduct);
+    setCount(newProduct);
+  }
+ 
   return (
     <div>
       <Router>
@@ -86,7 +112,14 @@ function App() {
           <Header count={count} />
           <Switch>
             <Route path="/cart">
-              <Cart cart={cart} confirmRemove={confirmRemove} />
+              <Cart
+                cart={cart}
+                confirmRemove={confirmRemove}
+                handleChangeQuantity={handleChangeQuantity}
+                subTotal={subTotal}
+                upItem={upItem}
+                downItem={downItem}
+              />
             </Route>
             <Route path="/sale/:slug">
               <DetailSale />
