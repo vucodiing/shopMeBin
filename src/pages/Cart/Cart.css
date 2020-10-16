@@ -34,10 +34,10 @@
     margin-top: 15px;
     margin-bottom: 10px;
 }
-.item-detail-number, .item-number {
+/* .item-detail-number, .item-number {
     display: flex;
     justify-content: space-between;
-}
+} */
 .item-detail-number {
     align-items: center;
 }
@@ -48,12 +48,12 @@
 .item-price {
     color: #18A0FB;
 }
-.item-detail, .item-color-size {
+.item-color-size {
     font-size: 14px;
 }
 .item-color, .item-size, .color-size-zone {
-    display: flex;
-    justify-content: space-between;
+    display: none;
+    /* justify-content: space-between; */
 }
 .item-size {
     margin-left: 10px;
@@ -118,9 +118,17 @@
     text-align: center;
     font-size: 14px;
 }
-.delete {
+.line-cart {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 13px;
+}
+.delete-mobile, .delete-desktop {
     color: #1976D2;
     cursor: pointer;
+}
+.delete-desktop {
+    display: none;
 }
 .non-cart {
     min-height: 310px;
@@ -208,10 +216,10 @@
 .col-3 img {
     max-width: 100%;
 }
-.col-mobile {
+/* .col-mobile {
     display: flex;
     justify-content: space-between;
-}
+} */
 .item-cart{
     padding: 10px;
     border-radius: 3px;
@@ -222,6 +230,7 @@
     height: 20px;
     background-color: white;
 }
+
 /* --------------------------MEDIA--------------------------------- */
 @media (min-width:375px) {
     .non-cart {
@@ -237,6 +246,20 @@
     }
 }
 @media(min-width: 768px) {
+    .item-detail-number, .item-number {
+        display: flex;
+        justify-content: space-between;
+    }
+    /* .col-mobile {
+        display: flex;
+        justify-content: space-between;
+    } */
+    .delete-desktop {
+        display: block;
+    }
+    .delete-mobile {
+        display: none;
+    }
     .item-name-price {
         display: flex;
         justify-content: space-between;
@@ -247,19 +270,23 @@
     .item-detail {
         display: block;
     }
-    .color-size-zone {
+    /* .color-size-zone {
         justify-content: flex-start;
     }
     .item-color-size {
+        display: flex;
+        justify-content: space-between;
+    } */
+    .item-color, .item-size, .color-size-zone {
         display: flex;
         justify-content: space-between;
     }
     .item-name-price, .item-detail-number, .item-madein, .item-msp {
         margin-bottom: 2px;
     }
-    .col-mobile {
+    /* .col-mobile {
         display: block;
-    }
+    } */
     #for-mobile {
         border-top: none;
     }

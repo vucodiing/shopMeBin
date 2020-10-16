@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./Footer.css";
 function Footer() {
   return (
-    <footer>
+    <footer className="hide-foot">
       <div className="register">
         <div className="container-fluid">
           <div className="text">

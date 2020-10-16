@@ -5,7 +5,7 @@ import Footer from "../../Footer/Footer";
 import InnerImageZoom from "react-inner-image-zoom";
 import "./Detail.css";
 import ResponsiveGirl from "../../Carousel/CarouselGirl";
-function DetailGirls() {
+function DetailGirls({ addCart }) {
   document.title = "CHI TIẾT SẢN PHẨM";
   const [item, setItem] = useState([]);
   const { slug } = useParams();
@@ -24,7 +24,6 @@ function DetailGirls() {
 
   return (
     <div>
-      {/* <FilterMobile /> */}
       {load ? (
         <div className="loader"></div>
       ) : (
@@ -198,7 +197,7 @@ function DetailGirls() {
                       </div>
                     </div>
                     <div className="detail-main-btn">
-                      <button data-toggle="modal" data-target="#addToCart">
+                      <button onClick={() => addCart(item)}>
                         THÊM VÀO GIỎ HÀNG
                       </button>
                     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import Blog from "./pages/Blog/Blog";
@@ -14,9 +14,12 @@ import Cart from "./pages/Cart/Cart";
 import Header from "./Header/Header";
 import DetailSale from "./pages/Detail/DetailSale";
 import Modal from "./Modal/Modal";
+import ModalOrder from "./Modal/ModalOrder";
+import Order from "./pages/Order/Order";
 
 function App() {
   const [isShowModal, setShowModal] = useState(false);
+  const [isModalOrder, setModalOrder] = useState(false);
   const [deleteProduct, setDeleteProduct] = useState({});
   const [id, setId] = useState([]);
   function confirmRemove(product, id) {
@@ -26,7 +29,24 @@ function App() {
   }
 
   const [cart, setCart] = useState([]);
-  const [count, setCount] = useState([]);
+
+  let subTotal = 0;
+  let quantity = 0;
+  useEffect(() => {
+    async function getCart() {
+      const response = await fetch("https://data-shopmebin.herokuapp.com/cart");
+      const itemCart = await response.json();
+
+      setCart(itemCart);
+    }
+
+    getCart();
+  }, [cart]);
+
+  for (let product of cart) {
+    subTotal += Number(product.priceNew) * product.quantity * 1000;
+    quantity += product.quantity;
+  }
 
   function addCart(item) {
     fetch("https://data-shopmebin.herokuapp.com/cart", {
@@ -51,13 +71,6 @@ function App() {
         quantity: item.quantity,
       }),
     });
-    async function getCount() {
-      const response = await fetch("https://data-shopmebin.herokuapp.com/cart");
-      const cart = await response.json();
-      setCart(cart);
-      setCount(cart);
-    }
-    getCount();
   }
 
   async function removeCart() {
@@ -67,52 +80,88 @@ function App() {
       (product) => product.id !== deleteProduct.id
     );
     setCart(newProducts);
-    setCount(newProducts);
+
     setShowModal(false);
   }
 
-  let subTotal = 0;
-  for (let product of cart) {
-    subTotal += Number(product.priceNew) * product.quantity*1000;
-  }
   function handleChangeQuantity(id, event) {
     const newProduct = [...cart];
-    if (parseInt(event.target.value) >= 1){
+    if (parseInt(event.target.value) >= 1) {
+      for (let product of newProduct) {
+        if (product.id === id) {
+          product.quantity = parseInt(event.target.value);
+          fetch(`https://data-shopmebin.herokuapp.com/cart/${id}`, {
+            method: "PATCH",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              quantity: product.quantity,
+            }),
+          });
+        }
+      }
+      setCart(newProduct);
+    }
+  }
+  function upItem(id) {
+    const newProduct = [...cart];
     for (let product of newProduct) {
       if (product.id === id) {
-        product.quantity = parseInt(event.target.value);
+        product.quantity += 1;
+        fetch(`https://data-shopmebin.herokuapp.com/cart/${id}`, {
+          method: "PATCH",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            quantity: product.quantity,
+          }),
+        });
       }
     }
     setCart(newProduct);
-    setCount(newProduct);
-  }} 
-  function upItem(id){
+  }
+  function downItem(id) {
     const newProduct = [...cart];
-    for (let product of newProduct){
-      if (product.id === id){product.quantity+=1}
-      
+
+    for (let product of newProduct) {
+      if (product.id === id && product.quantity > 1) {
+        product.quantity -= 1;
+        fetch(`https://data-shopmebin.herokuapp.com/cart/${id}`, {
+          method: "PATCH",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            quantity: product.quantity,
+          }),
+        });
+      }
     }
     setCart(newProduct);
-    setCount(newProduct);
   }
-  function downItem(id,event){
-    const newProduct = [...cart];
-    
-    for (let product of newProduct){
-      if (product.id === id && product.quantity >1){product.quantity-=1}
-    }
-    setCart(newProduct);
-    setCount(newProduct);
-  }
- 
+ function order(){
+  setModalOrder(true)
+ }
+ function closeOrder(){
+  setModalOrder(false)
+ }
   return (
     <div>
       <Router>
         <div>
-          <Header count={count} />
+          <Header quantity={quantity} />
           <Switch>
+            <Route path="/order">
+              <Order cart={cart} subTotal={subTotal} order={order}/>
+            </Route>
             <Route path="/cart">
               <Cart
+                quantity={quantity}
                 cart={cart}
                 confirmRemove={confirmRemove}
                 handleChangeQuantity={handleChangeQuantity}
@@ -122,13 +171,13 @@ function App() {
               />
             </Route>
             <Route path="/sale/:slug">
-              <DetailSale />
+              <DetailSale addCart={addCart}/>
             </Route>
             <Route path="/boys/:slug">
               <DetailBoys addCart={addCart} />
             </Route>
             <Route path="/girls/:slug">
-              <DetailGirls />
+              <DetailGirls addCart={addCart}/>
             </Route>
             <Route path="/boys">
               <Boy />
@@ -153,6 +202,7 @@ function App() {
             </Route>
           </Switch>
         </div>
+        <ModalOrder isModalOrder={isModalOrder} cart={cart} subTotal={subTotal} closeOrder={closeOrder}/>
       </Router>
       <Modal
         isVisible={isShowModal}
@@ -160,6 +210,7 @@ function App() {
         nameItem={deleteProduct.name}
         removeCart={removeCart}
       />
+      
     </div>
   );
 }

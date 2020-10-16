@@ -1,0 +1,23 @@
+.modalOrder {
+    padding: 10px;
+    background: rgb(255, 255, 255);
+    box-shadow: 0px 0px 10px 0px;
+    position: fixed;
+    margin: auto;
+    transform: translateX(50%);
+    right: 50%;
+    top: 110px;
+    border-radius: 7px;
+    z-index: 4;
+    transition: opacity .15s linear;
+    width: 300px;
+  }
+  #tick-success {
+    height: 70px;
+}
+.body-use {
+    margin-bottom: 14px;
+}
+.head {
+    text-align: center;
+}

@@ -5,7 +5,7 @@ import Footer from "../../Footer/Footer";
 import InnerImageZoom from "react-inner-image-zoom";
 import "./Detail.css";
 import ResponsiveSale from "../../Carousel/CarouselSale";
-function DetailSale() {
+function DetailSale({ addCart }) {
   document.title = "CHI TIẾT SẢN PHẨM";
   const [item, setItem] = useState([]);
   const { slug } = useParams();
@@ -28,7 +28,7 @@ function DetailSale() {
       {load ? (
         <div className="loader"></div>
       ) : (
-        <div className="container" style={{minHeight:"1000px"}}>
+        <div className="container" style={{ minHeight: "1000px" }}>
           <div className="text-link">
             <Link to="/">Trang chủ ›&nbsp;</Link>
             <Link to="/sale">Giảm giá ›&nbsp;</Link>
@@ -198,7 +198,9 @@ function DetailSale() {
                       </div>
                     </div>
                     <div className="detail-main-btn">
-                      <button>THÊM VÀO GIỎ HÀNG</button>
+                      <button onClick={() => addCart(item)}>
+                        THÊM VÀO GIỎ HÀNG
+                      </button>
                     </div>
                   </div>
                   <div className="detail-normal">

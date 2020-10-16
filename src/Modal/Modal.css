@@ -13,6 +13,7 @@
   right: 50%;
   top: 110px;
   border-radius: 7px;
+  z-index: 4;
 }
 
 .modalShow button {
@@ -34,4 +35,14 @@
 .btnCancel {
   background: rgb(196, 196, 196);
   width: 100px;
+}
+#mask-page {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  opacity: 0.5;
+  z-index: 3;
+  background-color: black;
 }
