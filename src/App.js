@@ -41,7 +41,7 @@ function App() {
     }
 
     getCart();
-  }, [cart]);
+  }, []);
 
   for (let product of cart) {
     subTotal += Number(product.priceNew) * product.quantity * 1000;
@@ -71,6 +71,9 @@ function App() {
         quantity: item.quantity,
       }),
     });
+    let _cart = [...cart];
+    _cart.push(item);
+    setCart(_cart);
   }
 
   async function removeCart() {
@@ -144,12 +147,12 @@ function App() {
     }
     setCart(newProduct);
   }
- function order(){
-  setModalOrder(true)
- }
- function closeOrder(){
-  setModalOrder(false)
- }
+  function order() {
+    setModalOrder(true);
+  }
+  function closeOrder() {
+    setModalOrder(false);
+  }
   return (
     <div>
       <Router>
@@ -157,7 +160,7 @@ function App() {
           <Header quantity={quantity} />
           <Switch>
             <Route path="/order">
-              <Order cart={cart} subTotal={subTotal} order={order}/>
+              <Order cart={cart} subTotal={subTotal} order={order} />
             </Route>
             <Route path="/cart">
               <Cart
@@ -171,13 +174,13 @@ function App() {
               />
             </Route>
             <Route path="/sale/:slug">
-              <DetailSale addCart={addCart}/>
+              <DetailSale addCart={addCart} />
             </Route>
             <Route path="/boys/:slug">
               <DetailBoys addCart={addCart} />
             </Route>
             <Route path="/girls/:slug">
-              <DetailGirls addCart={addCart}/>
+              <DetailGirls addCart={addCart} />
             </Route>
             <Route path="/boys">
               <Boy />
@@ -202,7 +205,12 @@ function App() {
             </Route>
           </Switch>
         </div>
-        <ModalOrder isModalOrder={isModalOrder} cart={cart} subTotal={subTotal} closeOrder={closeOrder}/>
+        <ModalOrder
+          isModalOrder={isModalOrder}
+          cart={cart}
+          subTotal={subTotal}
+          closeOrder={closeOrder}
+        />
       </Router>
       <Modal
         isVisible={isShowModal}
@@ -210,7 +218,6 @@ function App() {
         nameItem={deleteProduct.name}
         removeCart={removeCart}
       />
-      
     </div>
   );
 }
