@@ -6,7 +6,8 @@ import Footer from "../../Footer/Footer";
 import ItemsSale from "../../Items/ItemsSale";
 import filter from "../../icons/filter.svg";
 import ResponsiveSale from "../../Carousel/CarouselSale";
-function Sale() {
+import Timer from "../../CountDown/CountDown";
+function Sale({ countDown }) {
   document.title = "GIẢM GIÁ";
   const [showFilterMobile, setFilterMobile] = useState({ right: "-184px" });
   function ShowFilterMobile() {
@@ -71,48 +72,35 @@ function Sale() {
               <FilterDesktop />
             </div>
             <div className="col-md-9 col-lg-10">
-              {sale.length > 0 ?(<div>
-                <div className="doing" id="doing-now">
-                  <div className="doing-box1" />
-                  <div className="doing-box2">
-                    <span>Đang diễn ra</span>
+              {sale.length > 0 ? (
+                <div>
+                  <div className="doing-now" id="doing-now">
+                    <div className="doing-box1" />
+                    <div className="doing-box2">
+                      <span>Đang diễn ra</span>
+                    </div>
                   </div>
-                </div>
-                <ItemsSale sale={sale} />
-                <div className="next-page">
-                  <button id="btn1">1</button>
-                </div>
-                <div className="doing" id="doing-now">
-                  <div className="doing-box1" />
-                  <div className="doing-box2">
-                    <span>Sắp diễn ra</span>
+                  <ItemsSale sale={sale} />
+                  <div className="next-page">
+                    <button id="btn1">1</button>
                   </div>
-                </div>
-                <section>
-                  <ResponsiveSale />
-                </section>
-              </div>):((<div className="loader"></div>))}
-              {/* <div>
-                <div className="doing" id="doing-now">
-                  <div className="doing-box1" />
-                  <div className="doing-box2">
-                    <span>Đang diễn ra</span>
+                  <div className="doing" id="doing-now">
+                    <div>
+                      <div className="doing-box1" />
+                      <div className="doing-box2">
+                        <span>Sắp diễn ra </span>
+                      </div>
+                    </div>
+
+                    <Timer />
                   </div>
+                  <section>
+                    <ResponsiveSale />
+                  </section>
                 </div>
-                <ItemsSale sale={sale} />
-                <div className="next-page">
-                  <button id="btn1">1</button>
-                </div>
-                <div className="doing" id="doing-now">
-                  <div className="doing-box1" />
-                  <div className="doing-box2">
-                    <span>Sắp diễn ra</span>
-                  </div>
-                </div>
-                <section>
-                  <Responsive />
-                </section>
-              </div> */}
+              ) : (
+                <div className="loader"></div>
+              )}
             </div>
           </div>
         </div>

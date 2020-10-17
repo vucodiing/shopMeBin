@@ -22,6 +22,7 @@ function App() {
   const [isModalOrder, setModalOrder] = useState(false);
   const [deleteProduct, setDeleteProduct] = useState({});
   const [id, setId] = useState([]);
+
   function confirmRemove(product, id) {
     setShowModal(true);
     setDeleteProduct(product);
@@ -71,8 +72,10 @@ function App() {
         quantity: item.quantity,
       }),
     });
+
     let _cart = [...cart];
     _cart.push(item);
+
     setCart(_cart);
   }
 

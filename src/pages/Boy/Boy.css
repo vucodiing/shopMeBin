@@ -10,7 +10,7 @@
 }
 .doing {
   height: 35px;
-  width: 120px;
+  /* width: 120px; */
   font: 14px;
   display: flex;
   justify-content: space-between;

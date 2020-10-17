@@ -183,7 +183,7 @@ function Cart({
           </div>
         </div>
       )}
-
+      
       <Footer />
     </div>
   );
