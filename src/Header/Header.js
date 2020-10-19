@@ -6,7 +6,7 @@ import RegisterAccount from "../Account/RegisterAccount";
 import Hotline from "../Search/Hotline";
 import Search from "../Search/Search";
 import "./Header.css";
-function Header({ quantity }) {
+function Header({ quantity}) {
   const [search, setSearch] = useState(false);
   const [hotline, setHotline] = useState(true);
   const [login, setLogin] = useState(false);

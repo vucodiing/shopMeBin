@@ -70,11 +70,14 @@ function App() {
         tuyp: item.tuyp,
         age: item.age,
         quantity: item.quantity,
+        select:9999
       }),
     });
 
     let _cart = [...cart];
+ 
     _cart.push(item);
+
 
     setCart(_cart);
   }
@@ -89,7 +92,8 @@ function App() {
 
     setShowModal(false);
   }
-
+ 
+ 
   function handleChangeQuantity(id, event) {
     const newProduct = [...cart];
     if (parseInt(event.target.value) >= 1) {
@@ -153,7 +157,11 @@ function App() {
   function order() {
     setModalOrder(true);
   }
-  function closeOrder() {
+  async function closeOrder() {
+    for (let item of cart){
+      fetch(`https://data-shopmebin.herokuapp.com/cart/${item.id}`, { method: "DELETE" });
+    }
+    setCart([]);
     setModalOrder(false);
   }
   return (
@@ -186,7 +194,7 @@ function App() {
               <DetailGirls addCart={addCart} />
             </Route>
             <Route path="/boys">
-              <Boy />
+              <Boy cart={cart}/>
             </Route>
             <Route path="/girls">
               <Girl />

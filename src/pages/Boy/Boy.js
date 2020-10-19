@@ -8,7 +8,7 @@ import filter from "./filter.svg";
 import "./Boy.css";
 import { Button } from "react-bootstrap";
 
-function Boy() {
+function Boy({cart}) {
   document.title = "BÉ TRAI";
   const [showFilterMobile, setFilterMobile] = useState({ right: "-184px" });
   function ShowFilterMobile() {
@@ -108,7 +108,7 @@ function Boy() {
               {load ? (
                 <div className="loader"></div>
               ) : boyItems.length > 0 ? (
-                <ItemsBoy boyItems={boyItems} />
+                <ItemsBoy boyItems={boyItems} cart={cart}/>
               ) : (
                 <div style={{ textAlign: "center" }}>
                   <div>

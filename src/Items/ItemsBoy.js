@@ -2,8 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import freeShip from "./free-ship.svg";
 
-function ItemsBoy({ boyItems }) {
-  
+function ItemsBoy({ boyItems, cart }) {
+  console.log(cart)
+  function addToCart(item){
+console.log("vua bam them gio hang")
+  }
   return (
     <div className="row" id="item-boy">
       {boyItems.map((boys) => (
@@ -35,7 +38,7 @@ function ItemsBoy({ boyItems }) {
               </div>
             </div>
             <div className="item-addCart">
-              <button className="addCart">
+              <button className="addCart" onClick={addToCart(boys)}>
                 {" "}
                 <Link to="/cart">Mua ngay</Link>
               </button>
