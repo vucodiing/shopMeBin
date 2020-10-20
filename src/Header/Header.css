@@ -374,6 +374,7 @@ ul li:hover a {
   }
   ul li a {
     color: black;
+    
   }
   #menu-list {
     position: initial;
@@ -395,6 +396,8 @@ ul li:hover a {
   ul li:hover a {
     padding-left: 0px;
     color: #18a0fb;
+    transform: scale(1.2);
+  
   }
   .input-btn input {
     width: 400px;

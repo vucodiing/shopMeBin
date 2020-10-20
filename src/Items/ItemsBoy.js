@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import freeShip from "./free-ship.svg";
 
 function ItemsBoy({ boyItems, cart }) {
-  console.log(cart)
+  
   function addToCart(item){
-console.log("vua bam them gio hang")
+
   }
   return (
     <div className="row" id="item-boy">

@@ -75,11 +75,28 @@ function App() {
     });
 
     let _cart = [...cart];
- 
-    _cart.push(item);
+    _cart.push(item)
+    
+    for (let check of _cart){
+      if(_cart.indexOf(check.name)!==_cart.lastIndexOf(check.name)){
+        console.log("co sp trung nhau");
+        let newCart=_cart.pop();
+        setCart(newCart)
+      }
+      else{
+        console.log("k co sp trung nhau")
+        setCart(_cart);
+      }
+    }
+    
+    
+    
+   
+    
+    
 
 
-    setCart(_cart);
+    
   }
 
   async function removeCart() {
