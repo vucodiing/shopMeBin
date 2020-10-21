@@ -8,11 +8,15 @@
 }
 p {
   color: #bf1650;
+  font-size: 14px;
+  margin-top: 2px;
 }
 
 p::before {
   display: inline;
-  content: "⚠ ";
+  content: "♥ ";
+  
+ 
 }
 input[type="text"],
 input[type="password"] {
@@ -52,9 +56,9 @@ input[type="password"] {
   margin-bottom: 15px;
   margin-top: 5px;
 }
-.register .input-btn {
+/* .register .input-btn {
   text-align: center;
-}
+} */
 .input-btn input {
   width: 200px;
   padding: 5px;

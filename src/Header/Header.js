@@ -10,7 +10,7 @@ function Header({ quantity}) {
   const [search, setSearch] = useState(false);
   const [hotline, setHotline] = useState(true);
   const [login, setLogin] = useState(false);
-  const [register, setRegister] = useState(false);
+  const [registerAc, setRegister] = useState(false);
   const [mask, setMask] = useState(false);
   const [btn, setBtn] = useState({ left: "0px" });
   const [menuMobile, setMenuMobile] = useState({ left: "-170px" });
@@ -237,7 +237,7 @@ function Header({ quantity}) {
         mask={mask}
       />
       <RegisterAccount
-        register={register}
+        registerAc={registerAc}
         hideAccount={hideAccount}
         btn={btn}
         buttonRegister={buttonRegister}

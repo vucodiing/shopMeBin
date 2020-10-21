@@ -3,14 +3,18 @@ import { Link } from "react-router-dom";
 import "./Account.css";
 import close from "./close.svg";
 import eye from "./eye.svg";
+import { useForm } from "react-hook-form";
 function LoginAccount({
   login,
   mask,
   btn,
   buttonRegister,
   buttonLogin,
-  hideAccount
+  hideAccount,
 }) {
+  const { register, errors, handleSubmit } = useForm();
+  const onSubmit = data => {
+    console.log(data);}
   return (
     login && (
       <div>
@@ -40,7 +44,7 @@ function LoginAccount({
               ĐĂNG KÝ
             </button>
           </div>
-          <form id="login">
+          <form onSubmit={handleSubmit(onSubmit)} id="login">
             <div className="login-facebook">
               <button className="btn btn-primary">
                 ĐĂNG NHẬP BẰNG FACEBOOK
@@ -50,14 +54,23 @@ function LoginAccount({
             </div>
             <div className="login-use">
               <label>Số điện thoại</label>
-              <input type="text" name="phoneNumber" id="name" />
-              <span id="name-span" />
+              <input
+                type="tel"
+                name="numberMobile"
+                ref={register({ required: true, maxLength: 11, minLength: 8 })}
+              />
+              {errors.numberMobile && <p>Số điện thoại 9-10 chữ số</p>}
             </div>
             <div className="login-use repo">
               <label>Mật khẩu</label>
-              <input type="text" name="password" id="password" />
+              <input
+                type="tel"
+                name="password"
+                ref={register({ required: true})}
+              />
+              {/* <input type="text" name="password" id="password" /> */}
               <img src={eye} alt="show password" />
-              <span id="password-span" />
+              {errors.password && <p>Mật khẩu không được để trống</p>}
             </div>
             <div className="login-use-checkbox">
               <input id="checkbox" type="checkbox" />
@@ -78,7 +91,7 @@ function LoginAccount({
             </div>
           </form>
         </div>
-        <div id="mask-page" mask={mask}/>
+        <div id="mask-page" mask={mask} />
       </div>
     )
   );

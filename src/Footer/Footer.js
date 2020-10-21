@@ -15,6 +15,7 @@ function Footer() {
           </div>
           <div className="input-btn">
             <form onSubmit={handleSubmit(onSubmit)} id="email-footer">
+            
               <input
                 name="multipleErrorInput"
                 ref={register({
@@ -27,10 +28,10 @@ function Footer() {
 
               <button type="submit">Đăng ký</button>
               {errors.multipleErrorInput?.type === "required" && (
-                <p>Không được để trống</p>
+                <p>Email không được để trống</p>
               )}
               {errors.multipleErrorInput?.type === "pattern" && (
-                <p>Không đúng định dạng email</p>
+                <p>Email không đúng định dạng</p>
               )}
             </form>
           </div>
