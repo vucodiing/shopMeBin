@@ -1,8 +1,11 @@
 import React from "react";
-// import Iframe from 'react-iframe';
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import "./Footer.css";
+
 function Footer() {
+  const { register, errors, handleSubmit } = useForm();
+  const onSubmit = values => console.log(values);
   return (
     <footer className="hide-foot">
       <div className="register">
@@ -11,13 +14,24 @@ function Footer() {
             <span>ĐĂNG KÝ NHẬN KHUYẾN MẠI</span>
           </div>
           <div className="input-btn">
-            <form id="email-footer">
+            <form onSubmit={handleSubmit(onSubmit)} id="email-footer">
               <input
-                type="text"
-                name="eMail"
-                placeholder="Địa chỉ email của bạn"
+                name="multipleErrorInput"
+                ref={register({
+                  required: true,
+                  pattern:{value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i}
+                  
+                })}
               />
+              
+
               <button type="submit">Đăng ký</button>
+              {errors.multipleErrorInput?.type === "required" && (
+                <p>Không được để trống</p>
+              )}
+              {errors.multipleErrorInput?.type === "pattern" && (
+                <p>Không đúng định dạng email</p>
+              )}
             </form>
           </div>
         </div>
