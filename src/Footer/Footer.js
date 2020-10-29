@@ -26,10 +26,10 @@ function Footer() {
               />
               <button type="submit">Đăng ký</button>
               {errors.multipleErrorInput?.type === "required" && (
-                <p>Email không được để trống</p>
+                <p className="error-messenger">Email không được để trống</p>
               )}
               {errors.multipleErrorInput?.type === "pattern" && (
-                <p>Email không đúng định dạng</p>
+                <p className="error-messenger">Email không đúng định dạng</p>
               )}
             </form>
           </div>

@@ -6,17 +6,15 @@
   align-items: center;
   justify-content: space-between; */
 }
-p {
+.error-messenger {
   color: #bf1650;
   font-size: 14px;
   margin-top: 2px;
 }
 
-p::before {
+.error-messenger ::before {
   display: inline;
   content: "♥ ";
-  
- 
 }
 input[type="text"],
 input[type="password"] {

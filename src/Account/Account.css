@@ -1,13 +1,22 @@
 #mask-page {
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    opacity: 0.5;
-    z-index: 3;
-    background-color: black;
-  }
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  opacity: 0.5;
+  z-index: 3;
+  background-color: black;
+}
+.error-messenger {
+  color: #bf1650;
+  font-size: 14px;
+  margin-top: 2px;
+}
+.error-messenger::before {
+  display: inline;
+  content: "♥ ";
+}
 .box-logo {
   position: relative;
   display: flex;
@@ -58,7 +67,7 @@ button:focus {
 }
 #header-account {
   position: relative;
-  
+
   z-index: 4;
   background-color: white;
   width: 304px;
@@ -66,10 +75,12 @@ button:focus {
   border-radius: 7px;
   padding: 10px;
 }
-#login, #register {
+#login,
+#register {
   position: relative;
 }
-.login-facebook, .login-law {
+.login-facebook,
+.login-law {
   text-align: center;
 }
 .login-law {
@@ -86,15 +97,17 @@ button:focus {
 .login-facebook hr {
   margin-top: -11px;
 }
-.login-facebook button, .login-submit button {
+.login-facebook button,
+.login-submit button {
   width: 100%;
   border-radius: 7px;
 }
 .login-submit button {
-  background-color: #18A0FB;
-  border-color: #18A0FB;
+  background-color: #18a0fb;
+  border-color: #18a0fb;
 }
-.login-use, .login-use-checkbox {
+.login-use,
+.login-use-checkbox {
   font-size: 14px;
   margin-bottom: 15px;
 }
@@ -134,7 +147,12 @@ button:focus {
   width: 14px;
   cursor: pointer;
 }
-#name-span, #password-span, #name-register-span, #email-span, #password-register-span, #pass-again-span {
+#name-span,
+#password-span,
+#name-register-span,
+#email-span,
+#password-register-span,
+#pass-again-span {
   font-size: 13px;
   font-style: italic;
   color: rgb(255, 68, 68);

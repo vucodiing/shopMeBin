@@ -59,7 +59,7 @@ function LoginAccount({
                 name="numberMobile"
                 ref={register({ required: true, maxLength: 11, minLength: 8 })}
               />
-              {errors.numberMobile && <p>Số điện thoại 9-10 chữ số</p>}
+              {errors.numberMobile && <p className="error-messenger">Số điện thoại 9-10 chữ số</p>}
             </div>
             <div className="login-use repo">
               <label>Mật khẩu</label>
@@ -70,7 +70,7 @@ function LoginAccount({
               />
               {/* <input type="text" name="password" id="password" /> */}
               <img src={eye} alt="show password" />
-              {errors.password && <p>Mật khẩu không được để trống</p>}
+              {errors.password && <p className="error-messenger">Mật khẩu không được để trống</p>}
             </div>
             <div className="login-use-checkbox">
               <input id="checkbox" type="checkbox" />

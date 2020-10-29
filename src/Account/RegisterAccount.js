@@ -60,7 +60,7 @@ function RegisterAccount({
                 name="numberMobile"
                 ref={register({ required: true, maxLength: 11, minLength: 8 })}
               />
-              {errors.numberMobile && <p>Số điện thoại 9-10 chữ số</p>}
+              {errors.numberMobile && <p className="error-messenger">Số điện thoại 9-10 chữ số</p>}
             </div>
             <div className="login-use">
               <label>Email</label>
@@ -75,10 +75,10 @@ function RegisterAccount({
               />
 
               {errors.email?.type === "required" && (
-                <p>Email không được để trống</p>
+                <p className="error-messenger">Email không được để trống</p>
               )}
               {errors.email?.type === "pattern" && (
-                <p>Email không đúng định dạng</p>
+                <p className="error-messenger">Email không đúng định dạng</p>
               )}
             </div>
             <div className="login-use repo">
@@ -89,7 +89,7 @@ function RegisterAccount({
                 ref={register({ required: true })}
               />
               <img src={eye} alt="show password" />
-              {errors.password && <p>Mật khẩu không được để trống</p>}
+              {errors.password && <p className="error-messenger">Mật khẩu không được để trống</p>}
             </div>
             <div className="login-use repo">
               <label>Nhập lại mật khẩu</label>
@@ -101,7 +101,7 @@ function RegisterAccount({
                 })}
               />
               <img src={eye} alt="show password" />
-              {errors.passwordConfirm && <p>{errors.passwordConfirm.message}</p>}
+              {errors.passwordConfirm && <p className="error-messenger">{errors.passwordConfirm.message}</p>}
             </div>
             <div className="login-submit">
               <button
