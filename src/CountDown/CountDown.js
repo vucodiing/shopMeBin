@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./CountDown.css";
-
+// import clocks from "../../public/clock.svg";
 
 export default class Timer extends Component {
   state = {

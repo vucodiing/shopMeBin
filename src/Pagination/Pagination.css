@@ -1,0 +1,22 @@
+.button-pagination {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+.button-link {
+  margin-right: 5px;
+  height: 35px;
+  width: 40px;
+  background-color: #f0a48c;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 10px;
+  line-height: 35px;
+  font-size: 18px;
+  border: none;
+}
+.button-link a {
+ color: #ffffff;
+}

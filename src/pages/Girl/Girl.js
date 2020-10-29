@@ -7,6 +7,8 @@ import ItemsGirl from "../../Items/ItemsGirl";
 import filter from "../Boy/filter.svg";
 import "../Boy/Boy.css";
 import { Button } from "react-bootstrap";
+import Pagination from "../../Pagination/Pagination";
+import queryString from "query-string";
 function Girl() {
   document.title = "BÉ GÁI";
   const [showFilterMobile, setFilterMobile] = useState({ right: "-184px" });
@@ -16,16 +18,38 @@ function Girl() {
   function CloseFilterMobile() {
     setFilterMobile({ right: "-184px" });
   }
+  const [filters, setFilters] = useState({
+    _limit: 12,
+    _page: 1,
+  });
+  function handlePageChange(newPage) {
+    setFilters({
+      ...filters,
+      _page: newPage,
+    });
+  }
+  const [count, setCount] = useState([]);
+
+  useEffect(() => {
+    async function countItems() {
+      const response = await fetch("https://data-shopmebin.herokuapp.com/girls");
+      const counts = await response.json();
+      setCount(counts);
+    }
+
+    countItems();
+  }, []);
   const [girlItems, setGirls] = useState([]);
   useEffect(() => {
     async function getGirls() {
-      const response = await fetch("https://data-shopmebin.herokuapp.com/girls");
+      const paramsString = queryString.stringify(filters);
+      const response = await fetch(`https://data-shopmebin.herokuapp.com/girls?${paramsString}`);
       const girlItems = await response.json();
       setGirls(girlItems);
       setLoad(false);
     }
     getGirls();
-  }, []);
+  }, [filters]);
   const [load, setLoad] = useState(true);
   async function filterType(e) {
     if (e.target.checked) {
@@ -124,6 +148,11 @@ function Girl() {
               <div className="out-off">
                 <span>Bạn đã xem hết sản phẩm</span>
               </div>
+              <Pagination
+                onPageChange={handlePageChange}
+                count={count}
+                pagination={filters}
+              />
             </div>
           </div>
         </div>

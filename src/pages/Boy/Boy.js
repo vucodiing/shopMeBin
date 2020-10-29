@@ -156,15 +156,16 @@ function Boy({ cart }) {
                   </div>
                 </div>
               )}
+              <Pagination
+                onPageChange={handlePageChange}
+                count={count}
+                pagination={filters}
+              />
             </div>
           </div>
         </div>
       </div>
-      <Pagination
-        onPageChange={handlePageChange}
-        count={count}
-        pagination={filters}
-      />
+
       <Footer />
     </div>
   );
