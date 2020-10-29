@@ -24,8 +24,6 @@ function Footer() {
                   
                 })}
               />
-              
-
               <button type="submit">Đăng ký</button>
               {errors.multipleErrorInput?.type === "required" && (
                 <p>Email không được để trống</p>

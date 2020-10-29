@@ -49,6 +49,17 @@ function Header({ quantity}) {
     setMenuMobile({ left: "-170px" });
   }
 
+  async function getCity(){
+    const response = await fetch("https://apis.haravan.com/com/countries.json",{
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      }
+    })
+    const city = await response.json()
+    console.log(city)
+  }
   return (
     <div className="header">
       <div className="header-top">
@@ -145,7 +156,7 @@ function Header({ quantity}) {
                 </div>
               </div>
               <Link to="/">
-                <img src="../../logo-web.png" alt="logo trang web" />
+                <img src="../../logo-web.png" alt="logo trang web" onClick={getCity}/>
               </Link>
             </div>
             <div id="menu-list" style={menuMobile}>

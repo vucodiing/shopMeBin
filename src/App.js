@@ -17,11 +17,21 @@ import Modal from "./Modal/Modal";
 import ModalOrder from "./Modal/ModalOrder";
 import Order from "./pages/Order/Order";
 
+
 function App() {
   const [isShowModal, setShowModal] = useState(false);
   const [isModalOrder, setModalOrder] = useState(false);
   const [deleteProduct, setDeleteProduct] = useState({});
   const [id, setId] = useState([]);
+// const [pagination, setPagination]= useState({
+//   _page:1,
+//   _limit:10,
+//   _totalRow:1
+// })
+// const [filters, setFilters] = useState({
+//   _limit:10,
+//   _page:1
+// })
 
   function confirmRemove(product, id) {
     setShowModal(true);
@@ -88,16 +98,14 @@ function App() {
         setCart(_cart);
       }
     }
-    
-    
-    
-   
-    
-    
-
-
-    
   }
+  // function handlePageChange(newPage){
+  //   console.log("new page: ", newPage)
+  //   setFilters({
+  //     ...filters,
+  //     _page: newPage
+  //   })
+  // }
 
   async function removeCart() {
     const url = "https://data-shopmebin.herokuapp.com/cart/" + id;
@@ -211,7 +219,7 @@ function App() {
               <DetailGirls addCart={addCart} />
             </Route>
             <Route path="/boys">
-              <Boy cart={cart}/>
+            <Boy cart={cart} />
             </Route>
             <Route path="/girls">
               <Girl />
@@ -246,6 +254,7 @@ function App() {
         nameItem={deleteProduct.name}
         removeCart={removeCart}
       />
+      
     </div>
   );
 }

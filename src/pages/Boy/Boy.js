@@ -7,10 +7,25 @@ import ItemsBoy from "../../Items/ItemsBoy";
 import filter from "./filter.svg";
 import "./Boy.css";
 import { Button } from "react-bootstrap";
+import Pagination from "../../Pagination/Pagination";
+import queryString from "query-string";
 
-function Boy({cart}) {
+function Boy({ cart }) {
   document.title = "BÉ TRAI";
   const [showFilterMobile, setFilterMobile] = useState({ right: "-184px" });
+
+  const [filters, setFilters] = useState({
+    _limit: 12,
+    _page: 1,
+  });
+  function handlePageChange(newPage) {
+    console.log("new page: ", newPage);
+    setFilters({
+      ...filters,
+      _page: newPage,
+    });
+  }
+
   function ShowFilterMobile() {
     setFilterMobile({ right: "0px" });
   }
@@ -19,15 +34,30 @@ function Boy({cart}) {
   }
 
   const [boyItems, setBoys] = useState([]);
+  const [count, setCount] = useState([]);
+
+  useEffect(() => {
+    async function countItems() {
+      const response = await fetch("https://data-shopmebin.herokuapp.com/boys");
+      const counts = await response.json();
+      setCount(counts);
+    }
+
+    countItems();
+  }, []);
   useEffect(() => {
     async function getBoys() {
-      const response = await fetch("https://data-shopmebin.herokuapp.com/boys");
+      const paramsString = queryString.stringify(filters);
+      const response = await fetch(
+        `https://data-shopmebin.herokuapp.com/boys?${paramsString}`
+      );
       const boyItems1 = await response.json();
       setBoys(boyItems1);
+
       setLoad(false);
     }
     getBoys();
-  }, []);
+  }, [filters]);
 
   let response = "";
   const [load, setLoad] = useState(true);
@@ -108,7 +138,7 @@ function Boy({cart}) {
               {load ? (
                 <div className="loader"></div>
               ) : boyItems.length > 0 ? (
-                <ItemsBoy boyItems={boyItems} cart={cart}/>
+                <ItemsBoy boyItems={boyItems} cart={cart} />
               ) : (
                 <div style={{ textAlign: "center" }}>
                   <div>
@@ -130,7 +160,11 @@ function Boy({cart}) {
           </div>
         </div>
       </div>
-
+      <Pagination
+        onPageChange={handlePageChange}
+        count={count}
+        pagination={filters}
+      />
       <Footer />
     </div>
   );
