@@ -74,7 +74,8 @@
 .icon-gr-search {
   cursor: pointer;
 }
-.icon-account:hover, .icon-gr-search:hover {
+.icon-account:hover,
+.icon-gr-search:hover {
   color: #033b61;
 }
 .icon-account svg {
@@ -197,9 +198,9 @@ figure.zoom {
   color: rgb(231, 231, 231);
 }
 
-.menu-btn svg  {
+.menu-btn svg {
   font-size: 30px;
-  background-color: #80B5E1;
+  background-color: #80b5e1;
   border-radius: 3px;
 }
 #list-close svg {
@@ -214,17 +215,16 @@ figure.zoom {
   position: fixed;
   height: 100%;
   width: 170px;
-  background-color: #80B5E1;
+  background-color: #80b5e1;
   transition: all 0.2s linear;
   top: 0px;
-
 }
 #menu-list.active {
   left: 0px;
   z-index: 1;
   box-shadow: 0px 0px 10px 0px;
 }
-#menu-btnID.active{
+#menu-btnID.active {
   opacity: 0;
 }
 .menu-btn {
@@ -236,19 +236,19 @@ figure.zoom {
 }
 ul {
   padding: 5px;
-}  
+}
 ul li {
   padding: 15px;
   border-bottom: 1px solid white;
-  border-top: 1px solid white; 
+  border-top: 1px solid white;
   text-align: center;
   font-size: 14px;
   font-weight: bold;
   list-style: none;
-}                 
+}
 ul li a {
   list-style: none;
-  color: white;    
+  color: white;
   transition: all 0.2s;
 }
 ul li:hover a {
@@ -295,7 +295,7 @@ ul li:hover a {
   align-items: center;
 }
 /* ---- change when size of background change ---- */
-.logo img {                
+.logo img {
   width: 100%;
 }
 #banner {
@@ -374,7 +374,6 @@ ul li:hover a {
   }
   ul li a {
     color: black;
-    
   }
   #menu-list {
     position: initial;
@@ -396,8 +395,9 @@ ul li:hover a {
   ul li:hover a {
     padding-left: 0px;
     color: #18a0fb;
-    transform: scale(1.2);
-  
+  }
+  ul li a:focus {
+    color: #18a0fb;
   }
   .input-btn input {
     width: 400px;
