@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-
 import Blog from "./pages/Blog/Blog";
 import Boy from "./pages/Boy/Boy";
 import Girl from "./pages/Girl/Girl";
@@ -17,21 +16,11 @@ import Modal from "./Modal/Modal";
 import ModalOrder from "./Modal/ModalOrder";
 import Order from "./pages/Order/Order";
 
-
 function App() {
   const [isShowModal, setShowModal] = useState(false);
   const [isModalOrder, setModalOrder] = useState(false);
   const [deleteProduct, setDeleteProduct] = useState({});
   const [id, setId] = useState([]);
-// const [pagination, setPagination]= useState({
-//   _page:1,
-//   _limit:10,
-//   _totalRow:1
-// })
-// const [filters, setFilters] = useState({
-//   _limit:10,
-//   _page:1
-// })
 
   function confirmRemove(product, id) {
     setShowModal(true);
@@ -47,10 +36,8 @@ function App() {
     async function getCart() {
       const response = await fetch("https://data-shopmebin.herokuapp.com/cart");
       const itemCart = await response.json();
-
       setCart(itemCart);
     }
-
     getCart();
   }, []);
 
@@ -99,13 +86,6 @@ function App() {
       }
     }
   }
-  // function handlePageChange(newPage){
-  //   console.log("new page: ", newPage)
-  //   setFilters({
-  //     ...filters,
-  //     _page: newPage
-  //   })
-  // }
 
   async function removeCart() {
     const url = "https://data-shopmebin.herokuapp.com/cart/" + id;
@@ -114,10 +94,8 @@ function App() {
       (product) => product.id !== deleteProduct.id
     );
     setCart(newProducts);
-
     setShowModal(false);
   }
- 
  
   function handleChangeQuantity(id, event) {
     const newProduct = [...cart];
@@ -140,6 +118,7 @@ function App() {
       setCart(newProduct);
     }
   }
+
   function upItem(id) {
     const newProduct = [...cart];
     for (let product of newProduct) {
@@ -159,6 +138,7 @@ function App() {
     }
     setCart(newProduct);
   }
+
   function downItem(id) {
     const newProduct = [...cart];
 
@@ -177,11 +157,14 @@ function App() {
         });
       }
     }
+    
     setCart(newProduct);
   }
+
   function order() {
     setModalOrder(true);
   }
+
   async function closeOrder() {
     for (let item of cart){
       fetch(`https://data-shopmebin.herokuapp.com/cart/${item.id}`, { method: "DELETE" });
@@ -189,6 +172,7 @@ function App() {
     setCart([]);
     setModalOrder(false);
   }
+
   return (
     <div>
       <Router>
@@ -254,7 +238,6 @@ function App() {
         nameItem={deleteProduct.name}
         removeCart={removeCart}
       />
-      
     </div>
   );
 }
